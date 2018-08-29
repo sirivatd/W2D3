@@ -41,5 +41,26 @@ require 'rspec'
     
   end
   
+  describe '#stock_picker' do
+    let(:stocks) {[2.34,1.50,6.00,5.30,10.07,5.45,7.11]}
+    it 'returns nil if passed in empty array' do
+      expect(stock_picker([])).to be_nil
+    end
+    
+    it 'finds most profitable [buy,sell] days' do
+      expect(stock_picker(stocks)).to eq([2,5])
+    end
+    
+    it 'does NOT sell stock before you buy it' do
+      expect(stock_picker([20.00,0.00,1.00,2.75,4.00])).to eq([2,5])
+    end
+    
+    it 'raises error if no possiblity for profit' do
+      expect(stock_picker([5.00,4.00,3.00,2.00,1.00])).to eq("No chance at profit!")
+    end
+  
+  end
+  
+  
 
     

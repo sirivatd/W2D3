@@ -40,3 +40,26 @@ def my_transpose(arr)
   end
   result
 end
+
+def stock_picker(arr)
+  return nil if arr.empty?
+  max_profit = 0
+  start_day = -1
+  end_day = -1
+  
+  i = 0
+  while i < arr.length
+    j = i + 1
+    while j < arr.length
+      if (arr[j] - arr[i]) > max_profit
+        max_profit = arr[j] - arr[i]
+        start_day = i + 1
+        end_day = j + 1
+      end
+      j += 1
+    end
+    i += 1
+  end
+  return "No chance at profit!" if start_day == -1
+  return [start_day, end_day]
+end
