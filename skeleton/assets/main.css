@@ -1,5 +1,8 @@
+
+
 body {
 font-family: Arial, Helvetica, sans-serif;
+background-color: lightblue;
 }
 
 h1 {
@@ -20,4 +23,8 @@ h2 {
 
 header > img {
   width: 100px;
+}
+
+ol {
+  list-style: upper-roman inside;
 }
