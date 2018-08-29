@@ -63,3 +63,18 @@ def stock_picker(arr)
   return "No chance at profit!" if start_day == -1
   return [start_day, end_day]
 end
+
+class Stack
+  attr_accessor :data
+  def initialize(arr)
+    @data = arr
+  end
+  
+  def shift
+    @data.shift
+  end
+  
+  def add(num)
+    @data = [num] + @data
+  end
+end

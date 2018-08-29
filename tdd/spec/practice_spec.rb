@@ -58,7 +58,28 @@ require 'rspec'
     it 'raises error if no possiblity for profit' do
       expect(stock_picker([5.00,4.00,3.00,2.00,1.00])).to eq("No chance at profit!")
     end
+  end
   
+  describe 'stack' do
+    let(:col) { Stack.new([1,2,3,4])}
+    it 'initializes data with passed array' do
+      expect(col.data).to eq([1,2,3,4])
+    end
+    
+    it 'stack#data allows for shift' do
+      expect(col.shift).to eq(1)
+    end
+    
+    it 'stack#shift modifies data' do
+      temp = col.shift
+      expect(col.data).to eq([2,3,4])
+    end
+    
+    it 'stack#add adds to the front' do
+      col.add(3)
+      expect(col.data).to eq([3,1,2,3,4])
+    end
+    
   end
   
   
