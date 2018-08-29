@@ -24,5 +24,19 @@ class Array
 end
 
 def my_transpose(arr)
-  
+  return nil if arr == [[]]
+  raise ArgumentError unless arr.length == arr[0].length
+  result = []
+  i = 0
+  while i < arr.length
+    new_arr = []
+    j = 0
+    while j < arr.length
+      new_arr.push(arr[j][i])
+      j += 1
+    end
+    result.push(new_arr)
+    i += 1
+  end
+  result
 end

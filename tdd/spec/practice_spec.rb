@@ -31,6 +31,14 @@ require 'rspec'
       expect(my_transpose([[0,1,2],[3,4,5],[6,7,8]])).to eq([[0,3,6],[1,4,7],[2,5,8]])
     end
     
+    it 'raises error unless passed in square matrix' do
+      expect {my_transpose([[1,2,3]]) }.to raise_error(ArgumentError)
+    end
+    
+    it 'returns nil if passed in empty array' do
+      expect(my_transpose([[]])).to be_nil
+    end
+    
   end
   
 
