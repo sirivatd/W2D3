@@ -77,4 +77,85 @@ class Stack
   def add(num)
     @data = [num] + @data
   end
+  
+  def inspect
+    #not doing anything here, just overriding
+  end
+  
+end
+
+
+class Hanoi
+  attr_accessor :board
+  
+  def inspect
+    #not doing anything here, just overriding
+  end
+  def initialize(size)
+    starting_col = (1..size).to_a
+    @board = [Stack.new(starting_col),Stack.new([]),Stack.new([])]
+  end
+  
+  def render
+    i = 0
+    while i < @board.length
+        print(@board[i].data)
+        puts("")
+        i += 1
+    end
+  end
+  
+  def won?
+    i = 0
+    empty_cols = 0
+    return false unless @board[0].data.empty?
+    while i < @board.length 
+      empty_cols += 1 if @board[i].data.empty? 
+      i += 1
+    end
+    return true if empty_cols >= @board.length - 1
+    return false
+  end
+  
+  def update_board(arr)
+    if @board[arr[0]-1].data[0] == nil
+      puts "Invalid move!"
+      return
+    end
+    unless @board[arr[1]-1].data[0] == nil
+      if @board[arr[0]-1].data[0] > @board[arr[1]-1].data[0]
+        puts "Can't move there"
+        return
+      end
+    end
+    
+    starting_disc = @board[arr[0]-1].shift
+    @board[arr[1]-1].add(starting_disc)
+    self.render
+    puts ''
+  end
+  
+  def make_move(input_string)
+    arr = input_string.split(",").to_a
+    arr.each_with_index do |el, i|
+      arr[i] = el.to_i
+    end
+    update_board(arr)
+  end
+  
+  def play
+    moves = 0
+    puts("Welcome to the Tower of Hanoi!")
+    puts('')
+    self.render
+    puts('')
+    until won?
+      puts("Please make your move by entering a starting and ending location i.e. 1,2")
+      make_move(gets.chomp)
+      moves += 1
+    end
+    puts("Congratulations you solved the Tower with #{@board.length} discs in #{moves} turns!")
+  end
+  
+  
 end
